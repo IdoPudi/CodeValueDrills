@@ -21,6 +21,8 @@ namespace HelloPerson
 
             Console.WriteLine("Whats's your name?");
             name = Console.ReadLine();
+
+            //C# 6 feature, nice.
             Console.WriteLine($"Hello {name}");
             Console.WriteLine("Please enter a number from 1 to 10");
             isNumber = int.TryParse(Console.ReadLine(), out number);

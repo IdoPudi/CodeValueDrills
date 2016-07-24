@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuessingGame
 {
+    //Crashes on invalid input.
     class Program
     {
         static void Main(string[] args)

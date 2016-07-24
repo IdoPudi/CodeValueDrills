@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Quad
 {
+    //Crashes on invalid input.
+    //doesn't read input from command line.
+    //doesn't print solutions.
     class Program
     {
         static void Main(string[] args)
@@ -15,7 +18,8 @@ namespace Quad
             double b = 0;
             double c = 0;
             double toSqrt = 0;
-            string[] stringArguments = { "", "", "" };
+            //string[] stringArguments = { "", "", "" };
+            var stringArguments = args;
 
             if (!equation.CheckThreeArguments(stringArguments))
                 Console.ReadLine();

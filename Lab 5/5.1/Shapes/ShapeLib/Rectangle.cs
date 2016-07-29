@@ -37,7 +37,7 @@ namespace ShapeLib
 
         public override void Display()
         {
-            Console.BackgroundColor = Color;
+            Console.BackgroundColor = Color;//This line should be 'base.Display()'
             Console.WriteLine($"width is : {Width}, height is : {Height}");
         }
     }

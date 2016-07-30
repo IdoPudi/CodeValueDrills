@@ -11,6 +11,7 @@ namespace FileFinder
     {
         static void Main(string[] args)
         {
+            //Consider : https://msdn.microsoft.com/en-us/library/system.indexoutofrangeexception(v=vs.110).aspx
             string[] dirs = Directory.GetFiles(args[0],args[1]);
             foreach (var item in dirs)
             {

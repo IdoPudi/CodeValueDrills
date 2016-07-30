@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rationals
 {
+    //Shared with Danny's.
     class Program
     {
         public struct Rational

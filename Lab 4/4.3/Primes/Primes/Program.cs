@@ -26,8 +26,10 @@ namespace Primes
 
         }
 
+        //Consider a better name
         private static void CalcPrimes(int number1, int number2)
         {
+            //Even with C you could have decleared this variable at the same line ;)
             int[] primeNumbers;
 
             primeNumbers = GetPrimeNumbers(number1,number2);
@@ -51,11 +53,16 @@ namespace Primes
                     if (x % y == 0)
                         isPrime++;
 
-                    if (isPrime == 2) break;
+                    //The conveintion in C# is to start body expressions in a seperate line and with bracets "{ }", even for oneliners
+                    if (isPrime == 2)
+                    {
+                        break;
+                    }
                 }
                 if (isPrime != 2)
                     primeNumbers.Add(x);
 
+                //Redundant
                 isPrime = 0;
             }
 

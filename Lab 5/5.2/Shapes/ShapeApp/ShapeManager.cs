@@ -34,7 +34,24 @@ namespace ShapeApp
         public Shape this[int index] { get { return (Shape)shapeList[index]; } }
 
         public int Count => shapeList.Count;
+        /**
+      
+      What happens when you add more shapes?
+      Do you add more cases to the switch?
+      What happens if you want to use this method for any shape out there, even those which are not in your code?
+      Polymorphism is the answer
 
+      Consider this implementation:
+
+          foreach (var persistable in Shapes.OfType<IPersist>())
+          {
+             persistable.Write(st);
+          }
+
+      OfType will select only members which are assignable to an IPersist reference and return such a collection
+      https://msdn.microsoft.com/en-us/library/bb360913(v=vs.110).aspx
+
+      */
         public void Save(StringBuilder sb)
         {
             foreach (var shape in shapeList)

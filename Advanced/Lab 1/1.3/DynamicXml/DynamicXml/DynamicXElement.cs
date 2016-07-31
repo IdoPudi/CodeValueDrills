@@ -22,6 +22,7 @@ namespace DynamicXml
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
             bool resultNotNull = false;
+            //What happens if '_element.Element()' returns null?
             result = new DynamicXElement(_element.Element(binder.Name));
 
             if (result != null)
@@ -37,6 +38,7 @@ namespace DynamicXml
                 result = null;
             else
             {
+                //What happens if '_element.Elements((string)indexes[0])' returns an empty collection?
                 result = new DynamicXElement(_element.Elements((string)indexes[0]).ElementAt((int)indexes[1]));
                 isValid = true;
             }

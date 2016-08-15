@@ -8,6 +8,7 @@ using Strings;
 
 namespace StringTest
 {
+    //Awesome
     [TestClass]
     public class TestStrings
     {

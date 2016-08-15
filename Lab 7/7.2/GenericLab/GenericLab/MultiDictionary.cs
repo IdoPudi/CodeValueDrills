@@ -13,8 +13,11 @@ namespace GenericLab
         Dictionary<K, LinkedList<V>> dictionary = new Dictionary<K, LinkedList<V>>();
         
 
+        //תותח
         public int Count => dictionary.SelectMany(d => d.Value).Count();
+        
         public ICollection<K> Keys => dictionary.Keys;
+        //תותח
         public ICollection<V> Values => dictionary.SelectMany(d => d.Value).ToList();
 
 

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CalcTest
 {
+    //You can add more UnitTests.
     [TestClass]
     public class TestCalc
     {

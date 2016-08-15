@@ -26,8 +26,10 @@ namespace AccountsLib
 
         public int AccountId {get { return accountId; } }
 
+        //You should check whether money is negative.
         public void Deposit(decimal money) => this.balance += money;
 
+        //Printing a console message isn't a good idea. You are writing a class library, maybe your logic isn't running in a console app.
         public void Withdraw(decimal money)
         {
             if (balance - money > 0)

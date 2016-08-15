@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BinaryDisplay
 {
+    //crashes on invalid input.
+    //doesn't print the number of 1's.
+    //doesn't print results of negative numbers.
     public class Program
     {
         static void Main(string[] args)

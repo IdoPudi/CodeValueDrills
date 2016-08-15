@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
+    //C# 6 features - nice.
     public class Calc
     {
         public double Add(double number1, double number2) => number1 + number2;

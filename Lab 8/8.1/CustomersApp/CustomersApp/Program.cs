@@ -25,6 +25,7 @@ namespace CustomersApp
                 new Customer { Name = "cohen", ID = 197, Address = "Hadera" }
             };
 
+            //Why are creating a new instances of these? The GetCustomer method returns new objects...
             Collection<Customer> filteredListAToK = new Collection<Customer>();
             Collection<Customer> filteredListLToZ = new Collection<Customer>();
             Collection<Customer> filteredListID = new Collection<Customer>();
@@ -70,11 +71,15 @@ namespace CustomersApp
                 return false;
             });
 
+            //The type is redundate
             filteredListID = GetCustomers(list, (Customer customer) =>
             {
                 return customer.ID < 100;
             });
             Console.WriteLine("Customer name start with a letter from a to k");
+
+            //You should have extracted this to another method.
+            //This is a duplicated code
             foreach (var item in filteredListAToK)
             {
                 Console.WriteLine(item.Name);
@@ -91,8 +96,16 @@ namespace CustomersApp
             }
         }
 
+        //You should have used IEnumerable with yield
         private static Collection<Customer> GetCustomers(Collection<Customer> customers, CustomerFilter filter)
         {
+            //foreach (var customer in customers)
+            //{
+            //    if (filter(customer))
+            //    {
+            //        yield return customer;
+            //    }
+            //}
             Collection<Customer> collection = new Collection<Customer>();
 
             foreach (var item in customers)
@@ -108,6 +121,7 @@ namespace CustomersApp
 
         private static bool FilterCustomer(Customer customer)
         {
+            //You didn't check whether it is 'a' or bigger.
             if (customer.Name[0] <= 'k')
             {
                 return true;

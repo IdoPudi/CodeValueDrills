@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
+    //Nice idea to create a new class for the logic.
     class Program
     {
         static void Main(string[] args)
@@ -29,6 +30,9 @@ namespace Calculator
 
         private static bool IsOperatorValid(string calcOperator)
         {
+            //Could be implemented like this:
+            //bool operatorValid = calcOperator == "+" || calcOperator == "-" || calcOperator == "*" || calcOperator == "/";
+
             bool operatorValid = false;
 
             if (calcOperator == "+" || calcOperator == "-" || calcOperator == "*" || calcOperator == "/")
@@ -41,6 +45,8 @@ namespace Calculator
         {
             double number1 = 0;
             double number2 = 0;
+            
+            //consider the use of var.
             string calcOperator = string.Empty;
             bool isOperator = false;
 

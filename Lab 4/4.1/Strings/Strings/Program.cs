@@ -8,12 +8,14 @@ namespace Strings
 {
     public class Program
     {
+        //You are missing a loop
         static void Main(string[] args)
         {
             Program p = new Program();
             string sentence = string.Empty;
             Console.WriteLine("Please enter a sentence");
 
+            //string.IsNullOrEmpty is better
             sentence = Console.ReadLine();
             if (sentence != string.Empty)
             {
@@ -55,6 +57,9 @@ namespace Strings
         private static void printWords(string[] words)
         {
             string result = string.Empty;
+
+            //Interesting approach. Consider the use of Console.Write($"{s} ");
+            //
             foreach (var s in words)
             {
                 result = $"{result} {s}";

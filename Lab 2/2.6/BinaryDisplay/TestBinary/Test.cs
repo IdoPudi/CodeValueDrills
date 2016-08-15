@@ -8,6 +8,7 @@ using BinaryDisplay;
 
 namespace TestBinary
 {
+    //Not enough tests.
     [TestClass]
     public class Test
     {

@@ -69,12 +69,15 @@ namespace AccountsLib
                         Console.WriteLine("Nagitive balance you cant transfer");
                 }
             }
+
+            //Should be in main
             catch (ArgumentOutOfRangeException ex)
             {
                 Console.WriteLine(ex.Message);
             }
             finally
             {
+                //where is the try-finally and the logging with the *balance* before and after the operation is done?
                 Console.WriteLine("An attempt to transfer money was done");
                 Console.WriteLine($"Amount before transfer : {currentAmount}");
                 Console.WriteLine($"Amount after transfer : {transferToAccount.balance}");

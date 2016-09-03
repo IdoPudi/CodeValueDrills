@@ -45,6 +45,7 @@ namespace AccountsLib
             if (balance - money > 0)
                 balance -= money;
             else
+                //You should have throwed an InsufficientFundsException exception
                 Console.WriteLine("Nagitive balance you cant withdraw");
 
         }

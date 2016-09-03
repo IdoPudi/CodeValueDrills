@@ -1,0 +1,25 @@
+*)Never use recursion.. unless absolutely necessary and unavoidable (PlayBackgammon.StartPlayerTurn)
+Imagine what happens if you overflow the stack, and catch the stack overflow exception.
+You would then call the same method which caused the stack overflow, when the stack has already overflown.. not good!
+
+*)Getting rid of magic numbers - a magic number is a constant without a meaningful name which is located in your code.
+It is magic in the sense that no one really has an idea as to how its value serves the purpose of the code.
+
+What's funny is that you defined a constant (Board._totalNumberOfFields)
+but did not use it in line 37 of that class :)
+You have a couple more constants lying around - best not to leave them without a name - makes things a lot easier later.
+I guess you just missed it. still - it's very good that you defined a constant. way to go!
+
+*)Your solution is well organized, encapsulated and modular!
+
+*) Your code is mostly clean and readable
+
+*)Avoid call chaining:
+
+GameManager (line 213):
+
+'if (_board.BlackPlayerHasMoveToMake(_dices.GetDiceOne(), _dices.GetDiceTwo()))'
+
+If this line of code would throw an exception, you would not know which of the three method  calls caused it.
+We can't always reproduce the conditions for an exception in every application.
+So- having the opertunity to know where an exception has originated from is crucial.

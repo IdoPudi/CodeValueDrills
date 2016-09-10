@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="PriceCompare.Client.WPFApplication.View.CartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PriceCompare.Client.WPFApplication.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding CartItems }"
+                  AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedItem}"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Height="250"
+                  Margin="{StaticResource ControlMarginSmall}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}"
+                                    Header="שם מוצר" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Quantity ,ValidatesOnDataErrors=True,ValidatesOnExceptions=True}"
+                                    Header="כמות"
+                                    IsReadOnly="False" />
+                <DataGridTextColumn Binding="{Binding ByWeightInString}"
+                                    Header="יחידה"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding ChainOneItemPrice}"
+                                    Header="מחיר רמי לוי"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding ChainOneTotalPrice}"
+                                    Header="מחיר כולל רמי לוי"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding ChainTwoItemPrice}"
+                                    Header="מחיר יוחננוף"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding ChainTwoTotalPrice}"
+                                    Header="מחיר כולל יוחננוף"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding ChainThreeItemPrice}"
+                                    Header="מחיר טיב טעם"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding ChainThreeTotalPrice}"
+                                    Header="מחיר כולל טיב טעם"
+                                    IsReadOnly="True" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <Button Content="הסר מוצר מהסל"
+                        Command="{Binding RemoveItemFromCart}" />
+                <Button Content="נקה סל מוצרים"
+                        Command="{Binding ClearCart}" />
+            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Text="מחיר סל מוצרים ברמי לוי:"
+                           Margin="{StaticResource ControlMarginSmall}" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding ChainOneTotal}"
+                           Margin="{StaticResource ControlMarginSmall}" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Text="מחיר סל מוצרים ביוחננוף:"
+                           Margin="{StaticResource ControlMarginSmall}" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding ChainTwoTotal}"
+                           Margin="{StaticResource ControlMarginSmall}" />
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Text="מחיר סל מוצרים בטיב טעם:"
+                           Margin="{StaticResource ControlMarginSmall}" />
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding ChainThreeTotal}"
+                           Margin="{StaticResource ControlMarginSmall}" />
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="{StaticResource ControlMarginMedium}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="רמי לוי מוצרים יקרים"
+                               Margin="{StaticResource ControlMarginSmall}" />
+                    <ListView ItemsSource="{Binding ChainOneHigh}"
+                              DisplayMemberPath="Name"
+                              Height="90"
+                              Width="135"
+                              Margin="{StaticResource ControlMarginSmall}"
+                              Background="{StaticResource HighPriceBackground}"></ListView>
+                    <TextBlock Text="רמי לוי מוצרים זולים"
+                               Margin="{StaticResource ControlMarginSmall}" />
+                    <ListView ItemsSource="{Binding ChainOneLow}"
+                              DisplayMemberPath="Name"
+                              Height="90"
+                              Width="135"
+                              Margin="{StaticResource ControlMarginSmall}"
+                              Background="{StaticResource LowPriceBackground}"></ListView>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="יוחננוף מוצרים יקרים"
+                               Margin="{StaticResource ControlMarginSmall}" />
+                    <ListView ItemsSource="{Binding ChainTwoHigh}"
+                              DisplayMemberPath="Name"
+                              Height="90"
+                              Width="135"
+                              Margin="{StaticResource ControlMarginSmall}"
+                              Background="{StaticResource HighPriceBackground}"></ListView>
+                    <TextBlock Text="ביוחננוף מוצרים זולים"
+                               Margin="{StaticResource ControlMarginSmall}" />
+                    <ListView ItemsSource="{Binding ChainTwoLow}"
+                              DisplayMemberPath="Name"
+                              Height="90"
+                              Width="135"
+                              Margin="{StaticResource ControlMarginSmall}" 
+                              Background="{StaticResource LowPriceBackground}"></ListView>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="טיב טעם מוצרים יקרים"
+                               Margin="{StaticResource ControlMarginSmall}" />
+                    <ListView ItemsSource="{Binding ChainThreeHigh}"
+                              DisplayMemberPath="Name"
+                              Height="90"
+                              Width="135"
+                              Margin="{StaticResource ControlMarginSmall}"
+                              Background="{StaticResource HighPriceBackground}"></ListView>
+                    <TextBlock Text="טיב טעם מוצרים זולים"
+                               Margin="{StaticResource ControlMarginSmall}" />
+                    <ListView ItemsSource="{Binding ChainThreeLow}"
+                              DisplayMemberPath="Name"
+                              Height="90"
+                              Width="135"
+                              Margin="{StaticResource ControlMarginSmall}"
+                              Background="{StaticResource LowPriceBackground}"></ListView>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        
+
+
+    </Grid>
+</UserControl>

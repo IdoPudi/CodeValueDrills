@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PriceCompare.Client.WPFApplication.Styles">
+
+    <!-- Colors -->
+    <SolidColorBrush x:Key="DefaultForegroundBrush" Color="White" />
+    <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="#FF9A3D" />
+    <SolidColorBrush x:Key="DefaultBorderBrush" Color="#FFC447" />
+
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="Gray" />
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="White" />
+
+    <SolidColorBrush x:Key="LabelForegroundBrush" Color="#CCCCCC" />
+
+    <SolidColorBrush x:Key="ButtonMouseOverBackgroundBrush"
+                     Color="#FF8330" />
+    <SolidColorBrush x:Key="ButtonIsPressedBackgroundBrush"
+                     Color="#FF6816" />
+    <SolidColorBrush x:Key="ButtonIsPressedBorderBrush"
+                     Color="#FFC447" />
+    <SolidColorBrush x:Key="ButtonMouseOverBorderBrush"
+                     Color="#FFC447" />
+
+    <SolidColorBrush x:Key="WindowDefaultBackgroundBrush"
+                     Color="#C4FAFF" />
+
+    <SolidColorBrush x:Key="HighPriceBackground"
+                     Color="#FFA09B" />
+
+    <SolidColorBrush x:Key="LowPriceBackground"
+                     Color="#CDFFC9" />
+
+</ResourceDictionary>

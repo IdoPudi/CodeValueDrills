@@ -1,0 +1,72 @@
+﻿<Window x:Class="PriceCompare.Client.WPFApplication.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PriceCompare.Client.WPFApplication.View"
+        mc:Ignorable="d"
+        Title="מערכת השוואת מחירים"
+        FlowDirection="RightToLeft"
+        Background="{StaticResource WindowDefaultBackgroundBrush}" SizeToContent="Height" Width="950">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <!--Header-->
+            <Grid Grid.Row="0"
+                  Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image Source="..\Styles\Images\HeaderImage.jpg"
+                       Height="150"
+                       Stretch="Fill"
+                       Grid.Row="0" />
+                <StackPanel Grid.ColumnSpan="3"
+                            HorizontalAlignment="Left"
+                            Grid.Row="1"
+                            Orientation="Horizontal">
+                    <Button Command="{Binding UpdateDataBase}"
+                            Content="ייבא נתונים" />
+                    <Button Command="{Binding GetCatalog}"
+                            Content="הצג קטלוג" />
+                </StackPanel>
+            </Grid>
+
+
+            <!--Catalog-->
+            <local:CatalogView DataContext="{Binding CatalogViewModel}"
+                               Grid.Row="1" />
+
+            <!--Cart-->
+            <local:CartView DataContext="{Binding CartViewModel}"
+                            Grid.Row="1"
+                            Grid.Column="2" />
+
+        </Grid>
+        <Grid Panel.ZIndex="5"
+              Background="LightGray"
+              Opacity="0.7"
+              Visibility="{Binding IsBusy,Converter={StaticResource 'BoolToVis'},FallbackValue=Hidden}">
+
+            <TextBlock FontSize="{StaticResource WaitFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                טוען....
+            </TextBlock>
+        </Grid>
+    </Grid>
+    
+    
+</Window>

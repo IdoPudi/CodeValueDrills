@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PriceCompareDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chains">
+          <Key>
+            <PropertyRef Name="ChainId" />
+          </Key>
+          <Property Name="ChainId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChainName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChainWebSiteLink" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChainUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChainPassword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductPriceByChains">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ChainID" />
+          </Key>
+          <Property Name="ProductID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChainID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProdductPrice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProducyChainId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ByWeight" Type="bit" Nullable="false" />
+        </EntityType>
+        <Function Name="DeleteProductPriceByChainsTableRows" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DeleteProductsTableRows" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="PriceCompareDBModelStoreContainer">
+          <EntitySet Name="Chains" EntityType="Self.Chains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPriceByChains" EntityType="Self.ProductPriceByChains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PriceCompareDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Chain">
+          <Key>
+            <PropertyRef Name="ChainId" />
+          </Key>
+          <Property Name="ChainId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChainName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChainWebSiteLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChainUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChainPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductPriceByChain">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ChainID" />
+          </Key>
+          <Property Name="ProductID" Type="Guid" Nullable="false" />
+          <Property Name="ChainID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProdductPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProducyChainId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ByWeight" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PriceCompareDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chains" EntityType="Self.Chain" />
+          <EntitySet Name="ProductPriceByChains" EntityType="Self.ProductPriceByChain" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <FunctionImport Name="DeleteProductPriceByChainsTableRows" />
+          <FunctionImport Name="DeleteProductsTableRows" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PriceCompareDBModelStoreContainer" CdmEntityContainer="PriceCompareDBEntities">
+          <EntitySetMapping Name="Chains">
+            <EntityTypeMapping TypeName="PriceCompareDBModel.Chain">
+              <MappingFragment StoreEntitySet="Chains">
+                <ScalarProperty Name="ChainId" ColumnName="ChainId" />
+                <ScalarProperty Name="ChainName" ColumnName="ChainName" />
+                <ScalarProperty Name="ChainWebSiteLink" ColumnName="ChainWebSiteLink" />
+                <ScalarProperty Name="ChainUserName" ColumnName="ChainUserName" />
+                <ScalarProperty Name="ChainPassword" ColumnName="ChainPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPriceByChains">
+            <EntityTypeMapping TypeName="PriceCompareDBModel.ProductPriceByChain">
+              <MappingFragment StoreEntitySet="ProductPriceByChains">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ChainID" ColumnName="ChainID" />
+                <ScalarProperty Name="ProdductPrice" ColumnName="ProdductPrice" />
+                <ScalarProperty Name="ProducyChainId" ColumnName="ProducyChainId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="PriceCompareDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ByWeight" ColumnName="ByWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteProductPriceByChainsTableRows" FunctionName="PriceCompareDBModel.Store.DeleteProductPriceByChainsTableRows" />
+          <FunctionImportMapping FunctionImportName="DeleteProductsTableRows" FunctionName="PriceCompareDBModel.Store.DeleteProductsTableRows" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

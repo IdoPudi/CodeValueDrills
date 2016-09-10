@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="PriceCompare.Client.WPFApplication.View.CatalogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PriceCompare.Client.WPFApplication.View"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    
+    <StackPanel Orientation="Vertical">
+        
+        <ListBox ItemsSource="{Binding Items}"
+                 SelectedItem="{Binding SelectedItem}"
+                 DisplayMemberPath="Name"
+                 Height="250"
+                 Margin="{StaticResource ControlMarginSmall}">
+        </ListBox>
+        <!--<TextBlock Text="{Binding SelectedItem.Name}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="{StaticResource CatalogNameFontSize}"/>-->
+        <StackPanel Orientation="Horizontal">
+
+            <TextBox Text="{Binding Quantity,ValidatesOnDataErrors=True,ValidatesOnExceptions=True}"
+                     Width="50"
+                     Margin="{StaticResource ControlMarginMedium}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Height="35"/>
+            <Button Content="הוסף לסל"
+                    Command="{Binding AddItemToCart}"
+                    IsEnabled="True"
+                    Width="100" />
+        </StackPanel>
+        
+
+
+        
+    </StackPanel>
+</UserControl>
